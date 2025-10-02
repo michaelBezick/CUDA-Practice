@@ -1,0 +1,11 @@
+CompileFlags:
+  # Strip NVCC-only flags so clangd doesn't choke on them
+  Remove:
+    - "-gencode=.*"
+    - "--generate-code=.*"
+
+  # Add the clang equivalent so device code parses correctly.
+  # RTX 3060 = sm_86
+  Add:
+    - "--cuda-gpu-arch=sm_86"
+    - "-I/usr/local/cuda/include"

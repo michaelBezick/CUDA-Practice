@@ -4,11 +4,9 @@ project(my_cuda_project LANGUAGES CXX CUDA)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CUDA_STANDARD 17)
 
-# Optional: make CUDA files show up as C++
-set_source_files_properties(${CMAKE_SOURCE_DIR}/src/main.cu PROPERTIES LANGUAGE CUDA)
-
-# Generate compile_commands.json for clangd
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+# Let CMake generate the right flags for each compiler
+# 86 = Ampere (RTX 3060). You can do a list like 75;86 if you really need multi-arch.
+set(CMAKE_CUDA_ARCHITECTURES 86)
 
 add_executable(hello_cuda
   hello_cuda.cu
@@ -17,5 +15,6 @@ add_executable(hello_cuda
 add_executable(vector_add
   vector_add.cu
 )
-# If you need specific arch flags:
-# target_compile_options(my_app PRIVATE $<$<COMPILE_LANGUAGE:CUDA>:--generate-code=arch=compute_86,code=sm_86>)
+
+# Always generate compile_commands for clangd
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
