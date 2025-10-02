@@ -10,9 +10,12 @@ set_source_files_properties(${CMAKE_SOURCE_DIR}/src/main.cu PROPERTIES LANGUAGE 
 # Generate compile_commands.json for clangd
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-add_executable(my_app
-  src/main.cu
-  src/whatever.cpp
+add_executable(hello_cuda
+  hello_cuda.cu
+)
+
+add_executable(vector_add
+  vector_add.cu
 )
 # If you need specific arch flags:
 # target_compile_options(my_app PRIVATE $<$<COMPILE_LANGUAGE:CUDA>:--generate-code=arch=compute_86,code=sm_86>)
