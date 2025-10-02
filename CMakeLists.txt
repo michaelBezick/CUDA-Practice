@@ -16,5 +16,9 @@ add_executable(vector_add
   vector_add.cu
 )
 
+add_executable(mat_vec
+  matrix_vector.cu
+)
+
 # Always generate compile_commands for clangd
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
